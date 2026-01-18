@@ -1,0 +1,20 @@
+{
+  "name": "hybrid-modular-servers",
+  "version": "1.0.0",
+  "description": "Modular server architecture with Authentication, Media API, and Upload servers",
+  "scripts": {
+    "dev": "concurrently --kill-others \"cd hybrid-auth-server && npm run dev\" \"cd hybrid-media-api && npm run dev\" \"cd hybrid-upload-server && npm run dev\"",
+    "dev:auth": "cd hybrid-auth-server && npm run dev",
+    "dev:media": "cd hybrid-media-api && npm run dev",
+    "dev:upload": "cd hybrid-upload-server && npm run dev",
+    "install:all": "cd hybrid-auth-server && npm install && cd ../hybrid-media-api && npm install && cd ../hybrid-upload-server && npm install",
+    "apidoc:all": "cd hybrid-auth-server && npm run apidoc && cd ../hybrid-media-api && npm run apidoc && cd ../hybrid-upload-server && npm run apidoc",
+    "test:all": "cd hybrid-auth-server && npm test && cd ../hybrid-media-api && npm test && cd ../hybrid-upload-server && npm test"
+  },
+  "keywords": ["express", "typescript", "authentication", "media", "upload", "jwt", "mysql"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
