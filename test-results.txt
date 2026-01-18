@@ -1,0 +1,35 @@
+
+> my-express-ts-app@1.0.0 test
+> jest --verbose
+
+  console.log
+    Database initialized successfully
+
+      at Object.<anonymous> (src/database/db.ts:71:9)
+
+PASS src/tests/integration.test.ts
+  Integration Tests
+    Authors API
+      ✓ GET /api/v1/authors - should return all authors (13 ms)
+      ✓ POST /api/v1/authors - should create a new author (9 ms)
+      ✓ GET /api/v1/authors/:id - should return a single author (2 ms)
+      ✓ PUT /api/v1/authors/:id - should update an author (3 ms)
+      ✓ POST /api/v1/authors - should fail with duplicate email (2 ms)
+    Articles API
+      ✓ GET /api/v1/articles - should return all articles with author info (2 ms)
+      ✓ POST /api/v1/articles - should create a new article (2 ms)
+      ✓ GET /api/v1/articles/:id - should return a single article with author (4 ms)
+      ✓ PUT /api/v1/articles/:id - should update article by author (4 ms)
+      ✓ PUT /api/v1/articles/:id - should fail when wrong author tries to update (2 ms)
+      ✓ GET /api/v1/articles/author/:authorId - should return articles by author (1 ms)
+      ✓ DELETE /api/v1/articles/:id - should delete article by author (3 ms)
+      ✓ POST /api/v1/articles - should fail without author_id (1 ms)
+    Foreign Key Constraints
+      ✓ DELETE /api/v1/authors/:id - should fail if author has articles (2 ms)
+      ✓ DELETE /api/v1/authors/:id - should succeed if no articles (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       15 passed, 15 total
+Snapshots:   0 total
+Time:        0.948 s, estimated 2 s
+Ran all test suites.
