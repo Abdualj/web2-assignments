@@ -110,3 +110,79 @@ td img {
     background-color: #f5f5f5;
   }
 }
+
+dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 90vw;
+  max-height: 90vh;
+  padding: 2rem;
+  border: 1px solid #444;
+  border-radius: 12px;
+  background-color: #1a1a1a;
+  color: rgba(255, 255, 255, 0.87);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+dialog .close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+dialog h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+dialog .media-content {
+  margin: 1.5rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+dialog .media-content img,
+dialog .media-content video {
+  max-width: 100%;
+  max-height: 60vh;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+dialog .media-info {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #444;
+}
+
+dialog .media-info p {
+  margin: 0.5rem 0;
+}
+
+@media (prefers-color-scheme: light) {
+  dialog {
+    background-color: #ffffff;
+    color: #213547;
+    border: 1px solid #ddd;
+  }
+
+  dialog .media-info {
+    border-top: 1px solid #ddd;
+  }
+}
