@@ -1,15 +1,15 @@
+import { useLocation, useNavigate } from 'react-router';
+import type { NavigateFunction } from 'react-router';
 import type { MediaItem } from 'hybrid-types/DBTypes';
 
-const SingleView = (props: {
-  item: MediaItem;
-  setSelectedItem: (item: MediaItem | undefined) => void;
-}) => {
-  const { item, setSelectedItem } = props;
+const Single = () => {
+  const { state } = useLocation();
+  const navigate: NavigateFunction = useNavigate();
+  const item: MediaItem = state.item;
+
   return (
-    <dialog open>
-      <button className="close-btn" onClick={() => setSelectedItem(undefined)}>
-        ✕
-      </button>
+    <div className="single-view">
+      <button onClick={() => navigate(-1)}>Go back</button>
       <h2>{item.title}</h2>
       <p>{item.description}</p>
       <div className="media-content">
@@ -27,8 +27,8 @@ const SingleView = (props: {
         <p>Size: {item.filesize} bytes</p>
         <p>Created: {new Date(item.created_at).toLocaleString('fi-FI')}</p>
       </div>
-    </dialog>
+    </div>
   );
 };
 
-export default SingleView;
+export default Single;

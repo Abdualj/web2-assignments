@@ -9,6 +9,9 @@ npm install
 npm run dev
 App runs at: http://localhost:5173 (default Vite port)
 
+Live App
+Open [Hybrid React App](https://users.metropolia.fi/~abdualj/hybrid-react-build/) to view it in the browser.
+
 Main Features
 React – build interactive UI components
 TypeScript – adds types to catch errors early
