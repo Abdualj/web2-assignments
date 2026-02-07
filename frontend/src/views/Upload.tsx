@@ -1,8 +1,8 @@
 const Upload = () => {
   return (
     <div>
-      <h2>Upload</h2>
-      <p>Upload media page - coming soon</p>
+      <h1>Upload</h1>
+      <p>Upload media here. Only logged-in users can see this.</p>
     </div>
   );
 };

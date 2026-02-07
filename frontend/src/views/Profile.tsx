@@ -1,8 +1,8 @@
 const Profile = () => {
   return (
     <div>
-      <h2>Profile</h2>
-      <p>User profile page - coming soon</p>
+      <h1>Profile</h1>
+      <p>This is the profile page. Only logged-in users can see this.</p>
     </div>
   );
 };

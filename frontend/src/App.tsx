@@ -1,5 +1,8 @@
-import { Route, BrowserRouter as Router, Routes } from 'react-router';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { UserProvider } from './contexts/UserContext';
+import ProtectedRoute from './components/ProtectedRoute';
 import Layout from './components/Layout';
+import LoginForm from './components/LoginForm';
 import Home from './views/Home';
 import Profile from './views/Profile';
 import Upload from './views/Upload';
@@ -7,17 +10,34 @@ import Single from './views/Single';
 
 const App = () => {
   return (
-    <Router basename={import.meta.env.BASE_URL}>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/upload" element={<Upload />} />
-          <Route path="/single" element={<Single />} />
-        </Route>
-      </Routes>
+    <Router>
+      <UserProvider>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<LoginForm />} />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/upload"
+              element={
+                <ProtectedRoute>
+                  <Upload />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/single/:id" element={<Single />} />
+          </Route>
+        </Routes>
+      </UserProvider>
     </Router>
   );
 };
 
-export default App
+export default App;
