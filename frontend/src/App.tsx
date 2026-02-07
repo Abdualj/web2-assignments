@@ -8,33 +8,39 @@ import Profile from './views/Profile';
 import Upload from './views/Upload';
 import Single from './views/Single';
 
+const AppRoutes = () => {
+  return (
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/upload"
+          element={
+            <ProtectedRoute>
+              <Upload />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/single/:id" element={<Single />} />
+      </Route>
+    </Routes>
+  );
+};
+
 const App = () => {
   return (
     <Router>
       <UserProvider>
-        <Routes>
-          <Route element={<Layout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<LoginForm />} />
-            <Route
-              path="/profile"
-              element={
-                <ProtectedRoute>
-                  <Profile />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/upload"
-              element={
-                <ProtectedRoute>
-                  <Upload />
-                </ProtectedRoute>
-              }
-            />
-            <Route path="/single/:id" element={<Single />} />
-          </Route>
-        </Routes>
+        <AppRoutes />
       </UserProvider>
     </Router>
   );

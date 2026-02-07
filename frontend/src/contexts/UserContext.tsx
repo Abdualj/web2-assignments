@@ -22,7 +22,7 @@ const UserProvider = ({ children }: { children: React.ReactNode }) => {
         navigate('/');
       }
     } catch (e) {
-      console.log((e as Error).message);
+      console.error('Login failed:', (e as Error).message);
       throw e;
     }
   };
@@ -46,7 +46,9 @@ const UserProvider = ({ children }: { children: React.ReactNode }) => {
         navigate(location.pathname || '/');
       }
     } catch (e) {
-      console.log((e as Error).message);
+      console.error('Auto-login failed:', (e as Error).message);
+      // Clear invalid token
+      localStorage.removeItem('token');
     }
   };
 

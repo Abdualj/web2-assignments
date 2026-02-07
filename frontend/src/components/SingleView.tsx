@@ -1,4 +1,4 @@
-import { MediaItem } from 'hybrid-types/DBTypes';
+import type { MediaItem } from 'hybrid-types/DBTypes';
 
 const SingleView = (props: {
   item: MediaItem;

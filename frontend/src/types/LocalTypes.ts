@@ -1,4 +1,4 @@
-import { UserWithNoPassword } from 'hybrid-types/DBTypes';
+import type { UserWithNoPassword } from 'hybrid-types/DBTypes';
 
 export type Credentials = {
   username: string;

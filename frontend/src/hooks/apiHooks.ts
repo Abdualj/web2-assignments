@@ -37,7 +37,9 @@ export const useAuthentication = () => {
 export const useUser = () => {
   const getUserByToken = async (token: string): Promise<UserResponse> => {
     const response = await fetch(`${API_URL}/users/token`, {
+      method: 'GET',
       headers: {
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
     });
@@ -52,5 +54,3 @@ export const useUser = () => {
   return { getUserByToken };
 };
 
-  return { getUserByToken };
-};
