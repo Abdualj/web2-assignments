@@ -38,7 +38,7 @@ const AppRoutes = () => {
 
 const App = () => {
   return (
-    <Router>
+    <Router basename="/~abdulalj/hybrid-react-build">
       <UserProvider>
         <AppRoutes />
       </UserProvider>
