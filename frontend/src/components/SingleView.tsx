@@ -1,4 +1,5 @@
 import type { MediaItem } from 'hybrid-types/DBTypes';
+import Likes from './Likes';
 
 const SingleView = (props: {
   item: MediaItem;
@@ -27,6 +28,7 @@ const SingleView = (props: {
         <p>Size: {item.filesize} bytes</p>
         <p>Created: {new Date(item.created_at).toLocaleString('fi-FI')}</p>
       </div>
+      <Likes item={item} />
     </dialog>
   );
 };
