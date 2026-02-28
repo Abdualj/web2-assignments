@@ -1,5 +1,6 @@
 import type { MediaItem } from 'hybrid-types/DBTypes';
 import Likes from './Likes';
+import Comments from './Comments';
 
 const SingleView = (props: {
   item: MediaItem;
@@ -36,6 +37,7 @@ const SingleView = (props: {
         <p className="text-gray-300"><span className="font-semibold">Created:</span> {new Date(item.created_at).toLocaleString('fi-FI')}</p>
       </div>
       <Likes item={item} />
+      <Comments item={item} />
     </dialog>
   );
 };

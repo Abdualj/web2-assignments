@@ -1,6 +1,6 @@
 import type { UserWithNoPassword } from 'hybrid-types/DBTypes';
 import type { Credentials } from '../types/LocalTypes';
-import type { Like } from 'hybrid-types/DBTypes';
+import type { Like, Comment } from 'hybrid-types/DBTypes';
 
 const API_URL = import.meta.env.VITE_AUTH_API || 'http://localhost:3001/api/v1';
 const MEDIA_API_URL = import.meta.env.VITE_MEDIA_API || 'http://localhost:3000/api/v1';
@@ -150,5 +150,68 @@ export const useLike = () => {
   };
 
   return { postLike, deleteLike, getCountByMediaId, getUserLike };
+};
+
+export const useComment = () => {
+  const postComment = async (
+    comment_text: string,
+    media_id: number,
+    token: string
+  ): Promise<Comment> => {
+    const response = await fetch(`${MEDIA_API_URL}/comments`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      credentials: 'include',
+      body: JSON.stringify({ comment_text, media_id }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to post comment: ${response.statusText}`);
+    }
+
+    return response.json();
+  };
+
+  const getCommentsByMediaId = async (
+    media_id: number
+  ): Promise<(Comment & { username: string })[]> => {
+    // Get comments from media API
+    const response = await fetch(`${MEDIA_API_URL}/comments/bymedia/${media_id}`, {
+      credentials: 'include',
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to get comments: ${response.statusText}`);
+    }
+
+    const comments: Comment[] = await response.json();
+
+    // Add username to each comment by fetching user data from auth API
+    const commentsWithUsernames = await Promise.all(
+      comments.map(async (comment) => {
+        try {
+          const userResponse = await fetch(`${API_URL}/users/${comment.user_id}`, {
+            credentials: 'include',
+          });
+
+          if (userResponse.ok) {
+            const userData = await userResponse.json();
+            return { ...comment, username: userData.user?.username || 'Unknown' };
+          }
+          return { ...comment, username: 'Unknown' };
+        } catch (error) {
+          console.error('Error fetching username:', error);
+          return { ...comment, username: 'Unknown' };
+        }
+      })
+    );
+
+    return commentsWithUsernames;
+  };
+
+  return { postComment, getCommentsByMediaId };
 };
 
