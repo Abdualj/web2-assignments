@@ -98,11 +98,20 @@ const Likes = ({ item }: LikesProps) => {
   };
 
   return (
-    <div>
-      <p>Likes: {likeState.count}</p>
+    <div className="mt-6 pt-4 border-t border-gray-700 flex items-center gap-4">
+      <p className="text-lg font-semibold">
+        ❤️ <span className="text-red-400">{likeState.count}</span> {likeState.count === 1 ? 'Like' : 'Likes'}
+      </p>
       {user && (
-        <button onClick={handleLike}>
-          {likeState.userLike ? 'Unlike' : 'Like'}
+        <button 
+          onClick={handleLike}
+          className={`px-6 py-2 rounded-lg font-medium transition-all ${
+            likeState.userLike 
+              ? 'bg-red-600 hover:bg-red-500' 
+              : 'bg-gray-700 hover:bg-gray-600 border border-gray-600'
+          }`}
+        >
+          {likeState.userLike ? '❤️ Unlike' : '🤍 Like'}
         </button>
       )}
     </div>

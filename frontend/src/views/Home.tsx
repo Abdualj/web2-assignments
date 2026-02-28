@@ -51,29 +51,31 @@ const Home = () => {
       {selectedItem && (
         <SingleView item={selectedItem} setSelectedItem={setSelectedItem} />
       )}
-      <h2>My Media</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Thumbnail</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Created</th>
-            <th>Size</th>
-            <th>Type</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {mediaArray.map((item) => (
-            <MediaRow
-              key={item.media_id}
-              item={item}
-              setSelectedItem={setSelectedItem}
-            />
-          ))}
-        </tbody>
-      </table>
+      <h2 className="text-3xl font-bold mb-6">My Media</h2>
+      <div className="overflow-x-auto">
+        <table className="w-full border-collapse">
+          <thead className="bg-gray-800">
+            <tr>
+              <th className="p-3 text-left font-semibold">Thumbnail</th>
+              <th className="p-3 text-left font-semibold">Title</th>
+              <th className="p-3 text-left font-semibold">Description</th>
+              <th className="p-3 text-left font-semibold">Created</th>
+              <th className="p-3 text-left font-semibold">Size</th>
+              <th className="p-3 text-left font-semibold">Type</th>
+              <th className="p-3 text-left font-semibold">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {mediaArray.map((item) => (
+              <MediaRow
+                key={item.media_id}
+                item={item}
+                setSelectedItem={setSelectedItem}
+              />
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 };

@@ -3,6 +3,7 @@ import { UserProvider } from './contexts/UserContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Layout from './components/Layout';
 import LoginForm from './components/LoginForm';
+import RegisterForm from './components/RegisterForm';
 import Home from './views/Home';
 import Profile from './views/Profile';
 import Upload from './views/Upload';
@@ -14,6 +15,7 @@ const AppRoutes = () => {
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginForm />} />
+        <Route path="/register" element={<RegisterForm />} />
         <Route
           path="/profile"
           element={

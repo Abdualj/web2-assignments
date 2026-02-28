@@ -55,7 +55,33 @@ export const useUser = () => {
     return response.json();
   };
 
-  return { getUserByToken };
+  const getUsernameAvailable = async (username: string): Promise<{ available: boolean }> => {
+    const response = await fetch(`${API_URL}/users/username/${username}`, {
+      method: 'GET',
+      credentials: 'include',
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to check username availability: ${response.statusText}`);
+    }
+
+    return response.json();
+  };
+
+  const getEmailAvailable = async (email: string): Promise<{ available: boolean }> => {
+    const response = await fetch(`${API_URL}/users/email/${email}`, {
+      method: 'GET',
+      credentials: 'include',
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to check email availability: ${response.statusText}`);
+    }
+
+    return response.json();
+  };
+
+  return { getUserByToken, getUsernameAvailable, getEmailAvailable };
 };
 
 export const useLike = () => {

@@ -35,12 +35,18 @@ const LoginForm = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={doSubmit}>
+    <div className="max-w-md mx-auto mt-8 p-6 bg-gray-800 rounded-lg shadow-lg">
+      <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
+      {error && (
+        <div className="mb-4 p-3 bg-red-900/50 border border-red-500 rounded text-red-200">
+          {error}
+        </div>
+      )}
+      <form onSubmit={doSubmit} className="space-y-4">
         <div>
-          <label htmlFor="username">Username:</label>
+          <label htmlFor="username" className="block mb-2 font-medium">
+            Username:
+          </label>
           <input
             type="text"
             id="username"
@@ -48,10 +54,13 @@ const LoginForm = () => {
             value={inputs.username}
             onChange={handleChange}
             required
+            className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
         </div>
         <div>
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="password" className="block mb-2 font-medium">
+            Password:
+          </label>
           <input
             type="password"
             id="password"
@@ -59,9 +68,14 @@ const LoginForm = () => {
             value={inputs.password}
             onChange={handleChange}
             required
+            className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
         </div>
-        <button type="submit" disabled={loading}>
+        <button 
+          type="submit" 
+          disabled={loading}
+          className="w-full px-6 py-3 bg-blue-600 hover:bg-blue-500 disabled:bg-gray-600 disabled:cursor-not-allowed rounded-lg font-medium transition-colors"
+        >
           {loading ? 'Logging in...' : 'Login'}
         </button>
       </form>
